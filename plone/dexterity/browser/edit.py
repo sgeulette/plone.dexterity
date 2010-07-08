@@ -1,17 +1,19 @@
 from zope.component import getUtility
+from zope.event import notify
 
 from z3c.form import form, button
 from plone.z3cform import layout
 
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.i18n import MessageFactory as _
+from plone.dexterity.event import EditBegunEvent
 
 from plone.dexterity.browser.base import DexterityExtensibleForm
 
 from Products.statusmessages.interfaces import IStatusMessage
 
 class DefaultEditForm(DexterityExtensibleForm, form.EditForm):
-    
+ 
     @button.buttonAndHandler(_(u'Save'), name='save')
     def handleApply(self, action):
         data, errors = self.extractData()
@@ -29,6 +31,7 @@ class DefaultEditForm(DexterityExtensibleForm, form.EditForm):
     
     def update(self):
         self.portal_type = self.context.portal_type
+        notify(EditBegunEvent(self))
         super(DefaultEditForm, self).update()
 
     def updateActions(self):
