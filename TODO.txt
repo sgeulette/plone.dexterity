@@ -1,0 +1,7 @@
+- buildout
+- move code from plone.app.drafts to plone.app.dexterity.behaviors.drafts
+- move plone.app.dexterity.behaviors.drafts to plone.app.dexterity.drafts.drafts (grok '.' since will try to grok if drafts not
+  installed; giving an error; otherwise just list seperate grokers)
+- example.conference 'drafts' example (include depend)
+- ajax code in named file for auto preview
+
