@@ -4,4 +4,4 @@
   installed; giving an error; otherwise just list seperate grokers)
 - example.conference 'drafts' example (include depend)
 - ajax code in named file for auto preview
-
+- mark button behavior on request, not form
