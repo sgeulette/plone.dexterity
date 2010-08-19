@@ -1,7 +1,26 @@
-- buildout
-- move code from plone.app.drafts to plone.app.dexterity.behaviors.drafts
-- move plone.app.dexterity.behaviors.drafts to plone.app.dexterity.drafts.drafts (grok '.' since will try to grok if drafts not
-  installed; giving an error; otherwise just list seperate grokers)
-- example.conference 'drafts' example (include depend)
+- allowing ordering of button override 'buttons'
+- consider using viewlets for 'preview' mode (Save/Edit/Cancel buttons)
+- use behaviors subscribers if they work with ++add++ forms
+- remove Save / Cancel overrides and use an event subscriber for cancel / add/modify
 - ajax code in named file for auto preview
-- mark button behavior on request, not form
+- write test code once modules are finalized in proper location; etc
+
+- will code stay in plone.z3cform.buttons or move?
+
+BUGS
+----
+- when installing example.conference, it has a dependance of plone.app.drafts, but
+  plone.app.drafts still seems to need to be manually installed; but other things
+  like plone.dexterity do not??
+- think there may be a bug if trying to view a draft folder when an item draft
+  already exists.  fix -- either in drafts.py or plone.app.drafts.dexterity
+- When in add/preview mode and click on breadcrumb of real content object; the
+  IStatusMessage -- '..in preview mode..' still displays (plone 3/plone 4??)
+- sometimes in edit; preview will not work yet
+
+BUGS FIXED (I Think)
+--------------------
+- preview traverser code that uses add view; need to send blank request; then restore
+  or save will not work in edit form :)
+- info window not working when submitting/canceling from preview; dont know why since
+  IStatusMessage is being set by forms
