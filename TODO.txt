@@ -1,11 +1,15 @@
-- allowing ordering of button override 'buttons'
-- consider using viewlets for 'preview' mode (Save/Edit/Cancel buttons)
-- use behaviors subscribers if they work with ++add++ forms
-- remove Save / Cancel overrides and use an event subscriber for cancel / add/modify
+TODO
+----
 - ajax code in named file for auto preview
 - write test code once modules are finalized in proper location; etc
 
 - will code stay in plone.z3cform.buttons or move?
+
+COMPLETED TODO
+--------------
+- consider using viewlets for 'preview' mode (Save/Edit/Cancel buttons)
+- allowing ordering of button override 'buttons'
+- change button.py to buttonoverrides.py
 
 BUGS
 ----
@@ -14,9 +18,10 @@ BUGS
   like plone.dexterity do not??
 - think there may be a bug if trying to view a draft folder when an item draft
   already exists.  fix -- either in drafts.py or plone.app.drafts.dexterity
-- When in add/preview mode and click on breadcrumb of real content object; the
-  IStatusMessage -- '..in preview mode..' still displays (plone 3/plone 4??)
-- sometimes in edit; preview will not work yet
+- IStatusMessage (INFO, This is a preview...) sometimes (so far only on the 
+  first ++add++/preview save shows the IStatusMessage; not sure why since I 
+  can't repeat it unless I reset server and it happens onlt once again (maybe for
+  a given content type).  Could have something to do with caching???
 
 BUGS FIXED (I Think)
 --------------------
@@ -24,3 +29,6 @@ BUGS FIXED (I Think)
   or save will not work in edit form :)
 - info window not working when submitting/canceling from preview; dont know why since
   IStatusMessage is being set by forms
+- When in add/preview mode and click on breadcrumb of real content object; the
+  IStatusMessage -- '..in preview mode..' still displays (plone 3/plone 4??)
+- sometimes in edit; preview will not work yet
