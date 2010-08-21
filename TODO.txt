@@ -10,14 +10,14 @@ COMPLETED TODO
 - consider using viewlets for 'preview' mode (Save/Edit/Cancel buttons)
 - allowing ordering of button override 'buttons'
 - change button.py to buttonoverrides.py
+- don't resave draft if its the same as last time (ajax validation makes
+  lots of calls)
 
 BUGS
 ----
 - when installing example.conference, it has a dependance of plone.app.drafts, but
   plone.app.drafts still seems to need to be manually installed; but other things
   like plone.dexterity do not??
-- think there may be a bug if trying to view a draft folder when an item draft
-  already exists.  fix -- either in drafts.py or plone.app.drafts.dexterity
 - IStatusMessage (INFO, This is a preview...) sometimes (so far only on the 
   first ++add++/preview save shows the IStatusMessage; not sure why since I 
   can't repeat it unless I reset server and it happens onlt once again (maybe for
@@ -32,3 +32,5 @@ BUGS FIXED (I Think)
 - When in add/preview mode and click on breadcrumb of real content object; the
   IStatusMessage -- '..in preview mode..' still displays (plone 3/plone 4??)
 - sometimes in edit; preview will not work yet
+- think there may be a bug if trying to view a draft folder when an item draft
+  already exists.  fix -- either in drafts.py or plone.app.drafts.dexterity
