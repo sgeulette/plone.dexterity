@@ -5,6 +5,17 @@ TODO
 
 - will code stay in plone.z3cform.buttons or move?
 
+
+HACKS
+-----
+- plone.app.dexterity.behavior.drafts
+  value = getattr( widget.value, 'output', widget.value )
+
+  Can't seem to retreive a value from the widget that allows me to inject
+  it into the form.  I also tried using IDataConverter(widget).toFieldValue(value)
+  with same result of: 
+  RichTextValue object. (Did you mean <attribute>.raw or <attribute>.output?)
+
 COMPLETED TODO
 --------------
 - consider using viewlets for 'preview' mode (Save/Edit/Cancel buttons)
@@ -12,16 +23,15 @@ COMPLETED TODO
 - change button.py to buttonoverrides.py
 - don't resave draft if its the same as last time (ajax validation makes
   lots of calls)
+- dont like plone.z3cform fix (cached) since it would prevent loading maybe
+  in unknown circumstances ... try just not allowing the buttons to be
+  know as original_buttons if IFace matches...
 
 BUGS
 ----
 - when installing example.conference, it has a dependance of plone.app.drafts, but
   plone.app.drafts still seems to need to be manually installed; but other things
   like plone.dexterity do not??
-- IStatusMessage (INFO, This is a preview...) sometimes (so far only on the 
-  first ++add++/preview save shows the IStatusMessage; not sure why since I 
-  can't repeat it unless I reset server and it happens onlt once again (maybe for
-  a given content type).  Could have something to do with caching???
 
 BUGS FIXED (I Think)
 --------------------
@@ -34,3 +44,8 @@ BUGS FIXED (I Think)
 - sometimes in edit; preview will not work yet
 - think there may be a bug if trying to view a draft folder when an item draft
   already exists.  fix -- either in drafts.py or plone.app.drafts.dexterity
+- IStatusMessage (INFO, This is a preview...) sometimes (so far only on the 
+  first ++add++/preview save shows the IStatusMessage; not sure why since I 
+  can't repeat it unless I reset server and it happens onlt once again (maybe for
+  a given content type).  Could have something to do with caching???
+- when 'edit'ing a draft; image does not appear in plone 4
