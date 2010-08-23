@@ -32,6 +32,13 @@ BUGS
 - when installing example.conference, it has a dependance of plone.app.drafts, but
   plone.app.drafts still seems to need to be manually installed; but other things
   like plone.dexterity do not??
+- when using ajax validation; currently there is no dependable way to know that the
+  ajax validation is sending in the request; therefore if someone clicks on the
+  'remove' image radio button; the image will be removed from the draft right away.
+  If I can find some way to identify the ajax validater (that the form has not been
+  manually submitted by user); then I can add a HACK to prevent this.  May need to
+  modify ajax validater code to do this???
+- preview button not showing up in TTW content types
 
 BUGS FIXED (I Think)
 --------------------
