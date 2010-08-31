@@ -1,8 +1,6 @@
 TODO
 ----
 - ajax code in named file for auto preview
-- write test code once modules are finalized in proper location; etc
-
 - will code stay in plone.z3cform.buttons or move?
 
 
@@ -26,6 +24,7 @@ COMPLETED TODO
 - dont like plone.z3cform fix (cached) since it would prevent loading maybe
   in unknown circumstances ... try just not allowing the buttons to be
   know as original_buttons if IFace matches...
+- write test code once modules are finalized in proper location; etc
 
 BUGS
 ----
