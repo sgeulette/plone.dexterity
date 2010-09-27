@@ -1,6 +1,6 @@
 from zope.component import getUtility, createObject
 from zope.publisher.browser import BrowserPage
-from zope.event import notify
+#from zope.event import notify
 
 from z3c.form import form, button
 from plone.z3cform import layout
@@ -10,7 +10,7 @@ from plone.dexterity.i18n import MessageFactory as _
 
 from plone.dexterity.browser.base import DexterityExtensibleForm
 from plone.dexterity.utils import addContentToContainer
-from plone.dexterity.event import AddBegunEvent
+#from plone.dexterity.event import AddBegunEvent
 
 from Acquisition import aq_inner, aq_base
 from Acquisition.interfaces import IAcquirer
@@ -99,7 +99,7 @@ class DefaultAddForm(DexterityExtensibleForm, form.AddForm):
         self.request.response.redirect(self.nextURL())
 
     def update(self):
-        notify(AddBegunEvent(self))
+        #notify(AddBegunEvent(self))
         super(DefaultAddForm, self).update()
 
     def updateActions(self):
