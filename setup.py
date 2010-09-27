@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '1.0b3'
+version = '1.0b7'
 
 setup(name='plone.dexterity',
       version=version,
@@ -18,10 +18,14 @@ setup(name='plone.dexterity',
       author='Martin Aspeli',
       author_email='optilude@gmail.com',
       url='http://code.google.com/p/dexterity',
-      license='GPL',
+      license='GPL version 2',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['plone'],
       include_package_data=True,
+      message_extractors = {"plone": [
+            ("**.py",    "chameleon_python", None),
+            ("**.pt"  ,  "chameleon_xml", None),
+            ]},
       zip_safe=False,
       install_requires=[
           'setuptools',

@@ -1,8 +1,61 @@
 Changelog
 =========
 
-1.0b3 - unreleased
+1.0b7 - unreleased
 ------------------
+
+* ....
+
+
+1.0b6 - 2010-08-30
+------------------
+
+* Send ObjectCreatedEvent event from createContent utility method.
+  [wichert]
+
+* Update content base classes to use allow keyword arguments to set
+  initial values for instance variables.
+  [wichert]
+
+* Avoid empty <div class="field"> tag for title and description in 
+  item.pt.
+  [gaudenzius]
+
+ 
+1.0b5 - 2010-08-05
+------------------
+
+* Fix folder ordering bug.
+  See: http://code.google.com/p/dexterity/issues/detail?id=113
+  [optilude]
+
+* Switch to the .Title() and .Description() methods of fti when used in 
+  a translatable context, to ensure that these strings are translated.
+  [mj]
+
+* Add Norwegian translation.
+  [mj]
+
+
+1.0b4 - 2010-07-22
+------------------
+
+* Improve robustness: catch and log import errors when trying to resolve
+  behaviours.
+  [wichert]
+
+* Add German translation from Christian Stengel.
+  [wichert]
+
+
+1.0b3 - 2010-07-19
+------------------
+
+* Clarify license to GPL version 2 only.
+  [wichert]
+
+* Configure Babel plugins for i18n extraction and add a Dutch translation.
+  [wichert]
 
 
 1.0b2 - 2010-05-24

@@ -47,7 +47,7 @@ class DefaultEditForm(DexterityExtensibleForm, form.EditForm):
     def label(self):
         portal_type = self.context.portal_type
         fti = getUtility(IDexterityFTI, name=portal_type)
-        type_name = fti.title
+        type_name = fti.Title()
         return _(u"Edit ${name}", mapping={'name': type_name})
 
 DefaultEditView = layout.wrap_form(DefaultEditForm)
