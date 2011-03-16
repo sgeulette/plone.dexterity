@@ -204,9 +204,15 @@ class DexterityContent(DAVResourceMixin, PortalContent, DefaultDublinCoreImpl, C
         self._workflowInitialized = True
 
     def setTitle(self, title):
-        if type(title)==unicode:
-            title = title.encode('utf-8')
+#to force unicode
+        if type(title)==str:
+            title = title.decode('utf-8')
         self.title = title
+
+#to force encoded string
+#        if type(title)==unicode:
+#            title = title.encode('utf-8')
+#        self.title = title
 
 # XXX: It'd be nice to reduce the number of base classes here
 class Item(BrowserDefaultMixin, DexterityContent):

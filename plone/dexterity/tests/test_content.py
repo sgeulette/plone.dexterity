@@ -528,9 +528,9 @@ class TestContent(MockTestCase):
         #fix http://code.google.com/p/dexterity/issues/detail?id=145
         i = Item()
         i.setTitle("é")
-        self.assertEqual(i.Title(),"é")
+        self.assertEqual(i.Title(),u"é")
         i.setTitle(u"é")
-        self.assertEqual(i.Title(),"é")
+        self.assertEqual(i.Title(),u"é")
 
 
 def test_suite():
