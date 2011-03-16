@@ -203,6 +203,11 @@ class DexterityContent(DAVResourceMixin, PortalContent, DefaultDublinCoreImpl, C
         super(DexterityContent, self).notifyWorkflowCreated()
         self._workflowInitialized = True
 
+    def setTitle(self, title):
+        if type(title)==unicode:
+            title = title.encode('utf-8')
+        self.title = title
+
 # XXX: It'd be nice to reduce the number of base classes here
 class Item(BrowserDefaultMixin, DexterityContent):
     """A non-containerish, CMFish item
