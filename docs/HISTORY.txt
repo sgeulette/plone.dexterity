@@ -4,6 +4,13 @@ Changelog
 2.0 - unreleased
 ----------------
 
+* If both a model_source and schema are specified for an FTI, generate a
+  dynamic schema that is based on the model but also extends the concrete
+  schema. This way types with filesystem schemas can be edited
+  through the web and have changes serialized to the model_source.
+  Caveat: Fields deleted through the web will still be inherited from the
+  base concrete schema the next time the schema is loaded.
+
 * Add a UID method to Dexterity items for compatibility with the Archetypes
   API.
   [davisagli]
