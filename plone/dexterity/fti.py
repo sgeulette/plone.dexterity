@@ -19,6 +19,7 @@ from plone.supermodel.model import Model
 from plone.supermodel.utils import syncSchema
 
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.dexterity.interfaces import IDexteritySchema
 from plone.dexterity.interfaces import IDexterityFTIModificationDescription
 from plone.dexterity import utils
 
@@ -477,5 +478,17 @@ def ftiModified(object, event):
     
             model = fti.lookupModel()
             syncSchema(model.schema, schema, overwrite=True)
-        
+
+        # Update schema bases if we have a dynamic schema extending a concrete one that changed
+        if (fti.model_source or fti.model_file) and ('schema' in mod):
+            bases = ()
+            concrete_schema = fti.lookupConcreteSchema()
+            if concrete_schema is not None:
+                bases += (concrete_schema,)
+            bases += (IDexteritySchema,)
+
+            schemaName = utils.portalTypeToSchemaName(portal_type)
+            schema = getattr(plone.dexterity.schema.generated, schemaName)
+            schema.__bases__ = bases
+
         notify(SchemaInvalidatedEvent(portal_type))
