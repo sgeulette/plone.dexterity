@@ -7,6 +7,13 @@ from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.interfaces import IDexterityContent
 
+from zope.interface import Interface
+
+class IDexterityTextIndexer(Interface):
+    """Dexterity behavior interface for enabling the dynamic SearchableText
+    indexer on a content type.
+    """
+
 class DexterityBehaviorAssignable(object):
     """Support plone.behavior behaviors stored in the FTI
     """

@@ -2,6 +2,7 @@ from zope.interface import Interface, Attribute
 from zope.lifecycleevent.interfaces import IModificationDescription
 
 import zope.schema
+from zope.interface import Interface
 
 try:
     from zope.app.content import IContentType
@@ -161,4 +162,26 @@ class IAddCancelledEvent(ICancelledEvent):
 class IEditFinishedEvent(IObjectEvent):
     """Edit was finished and contents are saved. This event is fired
     even when no changes happen (and no modified event is fired.)
+    """
+
+class IDexterityTextIndexFieldConverter(Interface):
+    """Interface for a multi-adapter which converts the field value of the
+    adapted field into a human readable, translated text for indexing in
+    the searchable text index.
+    """
+
+    def __init__(self, context, field, widget):
+        """The multi-adpater adapts the context, the field and the widget.
+        """
+
+    def convert(self):
+        """Returns a string containing the words to index. Translatable
+        Message-objects are already translated into normal strings. On a
+        multi-language site the
+        """
+
+
+class IDynamicTextIndexExtender(Interface):
+    """Adapter interface for a named adapter which extends the dynamic
+    text indexer.
     """

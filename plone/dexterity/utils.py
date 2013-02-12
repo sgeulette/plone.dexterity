@@ -15,6 +15,7 @@ from plone.behavior.interfaces import IBehavior
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.behavior.interfaces import IBehaviorAssignable
 from plone.dexterity.interfaces import IDexterityFTI
+from plone.supermodel.interfaces import SEARCHABLE_KEY
 
 from Products.CMFCore.interfaces import ISiteRoot
 
@@ -230,3 +231,20 @@ def getAdditionalSchemata(context=None, portal_type=None):
             behavior_schema = IFormFieldProvider(behavior_reg.interface, None)
             if behavior_schema is not None:
                 yield behavior_schema
+
+def searchable(iface, field_name):
+    """
+        mark a field in existing iface as searchable
+    """
+
+    if schema.getFields(iface).get(field_name) is None:
+        dottedname = '.'.join((iface.__module__, iface.__name__))
+        raise AttributeError('%s has no field "%s"' % (
+                dottedname, field_name))
+
+    store = iface.queryTaggedValue(SEARCHABLE_KEY)
+    if store is None:
+        store = []
+    store.append((iface, field_name, 'true'))
+    iface.setTaggedValue(SEARCHABLE_KEY, store)
+
