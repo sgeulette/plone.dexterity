@@ -1,4 +1,5 @@
 from Acquisition import Explicit, aq_base, aq_parent
+from ComputedAttribute import ComputedAttribute
 from DateTime import DateTime
 from zExceptions import Unauthorized
 from OFS.PropertyManager import PropertyManager
@@ -54,6 +55,8 @@ from plone.dexterity.interfaces import IDexterityFTI
 from plone.dexterity.utils import datify
 from plone.dexterity.utils import safe_utf8
 from plone.dexterity.utils import safe_unicode
+from Products.CMFCore.utils import getToolByName
+from zope.deprecation.deprecation import deprecate, DeprecatedMethod
 
 _marker = object()
 _zone = DateTime().timezone()
@@ -542,6 +545,13 @@ class DexterityContent(DAVResourceMixin, PortalContent, PropertyManager, Contain
         # Set Dublin Core Rights element - resource copyright.
         self.rights = safe_unicode(rights)
 
+    @security.protected(permissions.View)
+    def get_portal_url(self):
+        return getToolByName(self, 'portal_url')
+    portal_url = ComputedAttribute(get_portal_url, 1)
+
+DeprecatedMethod(DexterityContent.get_portal_url,
+                 "Please use getToolByName(context, portal_url) instead")
 
 class Item(PasteBehaviourMixin, BrowserDefaultMixin, DexterityContent):
     """A non-containerish, CMFish item
