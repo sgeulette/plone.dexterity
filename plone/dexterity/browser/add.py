@@ -44,6 +44,11 @@ class DefaultAddForm(DexterityExtensibleForm, form.AddForm):
     def additionalSchemata(self):
         return getAdditionalSchemata(portal_type=self.portal_type)
 
+    def applyChanges(self, subform, content, data):
+        form.applyChanges(subform, content, data)
+        for group in subform.groups:
+            self.applyChanges(group, content, data)
+
     # API
     
     def create(self, data):
@@ -65,9 +70,7 @@ class DefaultAddForm(DexterityExtensibleForm, form.AddForm):
         if IAcquirer.providedBy(content):
             content = content.__of__(container)
 
-        form.applyChanges(self, content, data)
-        for group in self.groups:
-            form.applyChanges(group, content, data)
+        self.applyChanges(self, content, data)
 
         return aq_base(content)
 
