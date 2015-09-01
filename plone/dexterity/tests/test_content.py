@@ -752,21 +752,21 @@ class TestContent(MockTestCase):
 
         summer_timezone = DateTime('2010/08/20').timezone()
         self.assertEqual(
-            i.effective_date, DateTime('08/20/2010 12:59:59 GMT-5'))
+            i.effective_date, DateTime('08/20/2010 12:59:59 US/Eastern'))
         self.assertEqual(
             i.EffectiveDate(zone=summer_timezone),
-            DateTime('2010-08-20 12:59:59 GMT-5').toZone(summer_timezone).ISO()
+            DateTime('2010-08-20 12:59:59 US/Eastern').toZone(summer_timezone).ISO()
         )
-        self.assertEqual(i.effective(), DateTime('08/20/2010 12:59:59 GMT-5'))
+        self.assertEqual(i.effective(), DateTime('08/20/2010 12:59:59 US/Eastern'))
         self.assertEqual(
             i.expiration_date,
-            DateTime('07/09/2013 12:59:59 GMT-5')
+            DateTime('07/09/2013 12:59:59 US/Eastern')
         )
         self.assertEqual(
             i.ExpirationDate(zone=summer_timezone),
-            DateTime('2013-07-09 12:59:59 GMT-5').toZone(summer_timezone).ISO()
+            DateTime('2013-07-09 12:59:59 US/Eastern').toZone(summer_timezone).ISO()
         )
-        self.assertEqual(i.expires(), DateTime('2013/07/09 12:59:59 GMT-5'))
+        self.assertEqual(i.expires(), DateTime('2013/07/09 12:59:59 US/Eastern'))
         self.assertEqual(i.creation_date, i.created())
         self.assertEqual(i.CreationDate(zone=summer_timezone), i.creation_date.ISO())
         self.assertEqual(i.modification_date, i.creation_date)

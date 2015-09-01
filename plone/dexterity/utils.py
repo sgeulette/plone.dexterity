@@ -3,6 +3,7 @@ from AccessControl import Unauthorized
 from Acquisition import aq_base
 from Acquisition import aq_inner
 from DateTime import DateTime
+from DateTime.interfaces import DateTimeError
 from plone.app.uuid.utils import uuidToObject
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.behavior.interfaces import IBehaviorAssignable
@@ -217,7 +218,10 @@ def datify(s):
         if s == 'None':
             s = None
         elif isinstance(s, datetime.datetime):
-            s = DateTime(s.isoformat())
+            try:
+                s = DateTime(s.isoformat())
+            except DateTimeError:
+                s = DateTime(s)
         elif isinstance(s, datetime.date):
             s = DateTime(s.year, s.month, s.day)
         elif s is not None:
